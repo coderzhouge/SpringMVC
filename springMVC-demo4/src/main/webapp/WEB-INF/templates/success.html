@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>success</title>
+    </head>
+
+    <body>
+        <h1>SpringMVC域对象接收数据</h1>
+        ServletAPI  : <span th:text="${username}" /><br>
+        ModelAndView  : <span th:text="${mav}" /> <br>
+        Model  : <span th:text="${model}" /> <br>
+        Map  : <span th:text="${map}" /> <br>
+        ModelMap  : <span th:text="${modelMap}" /> <br>
+        Session  : <span th:text="${sessoinScope.se}" /> <br>
+        Application  : <span th:text="${application.app}" /> <br>
+
+    </body>
+</html>

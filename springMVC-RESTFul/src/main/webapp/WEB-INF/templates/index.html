@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>index</title>
+    </head>
+
+    <body>
+        <!--GET-->
+        <a th:href="@{/user}">test GET</a> <br>
+
+        <!--POST-->
+        <div style="border: 1px solid red">
+            <h1>test POST</h1>
+            <form th:action="@{/user/1}" method="post">
+                USERNAME:<input type="text" name="username"><br>
+                PASSWORD:<input type="text" name="password"><br>
+                <input type="submit" value="sumbit">
+            </form>
+        </div>
+
+        <!--PUT-->
+        <div style="border: 1px solid red">
+            <h1>test PUT</h1>
+            <form th:action="@{/user}" method="post">
+                <input type="hidden" name="_method" value="PUT">
+                USERNAME:<input type="text" name="username"><br>
+                PASSWORD:<input type="text" name="password"><br>
+                <input type="submit" value="sumbit">
+            </form>
+        </div>
+
+        <!--DELETE-->
+        <div style="border: 1px solid red">
+            <h1>test DELETE</h1>
+            <form th:action="@{/user/1}" method="post">
+                <input type="hidden" name="_method" value="DELETE">
+                USERNAME:<input type="text" name="username"><br>
+                PASSWORD:<input type="text" name="password"><br>
+                <input type="submit" value="sumbit">
+            </form>
+        </div>
+
+        <a th:href="@{/employee}" >1.select employee info</a>
+    </body>
+
+</html>

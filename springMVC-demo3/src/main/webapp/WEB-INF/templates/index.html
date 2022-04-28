@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+    <h1>SpingMVC获取请求参数</h1>
+    <a th:href="@{/testUrl/'admin'/'123'}">方式一：通过url获取参数--RESTful风格</a> <br>
+    <a th:href="@{/testRequest(username='admin',password=123456)}">方式二：通过ServletAPI获取请求参数</a> <br>
+    <a th:href="@{/testParams(username='zhouge',password=456789)}">方式三：通过传递参数和形参同名法获取请求参数</a> <br>
+
+    <div style="border: 1px solid red">
+        <span>方式四：通过@RequestParam注解获取请求参数</span>
+        <form th:action="@{/testRequestParam}" method="get">
+            username:<input type="text" name="user_name"> <br>
+            password:<input type="text" name="password"><br>
+            userGender:male<input type="radio" name="usergender" value="male">
+                        female<input type="radio" name="usergender" value="female"> <br>
+            hobbies:
+                    basketball<input type="checkbox" name="hobbies" value="basketball">
+                    badminton<input type="checkbox" name="hobbies" value="badminton">
+                    ping-pongBall<input type="checkbox" name="hobbies" value="ping-pongBall">
+                    football<input type="checkbox" name="hobbies" value="football"><br>
+
+            <input type="submit" value="submit">
+        </form>
+    </div>
+
+    <a th:href="@{/testRequestHeader}">方式五：通过@RequestHeader获取请求头信息</a> <br>
+    <a th:href="@{/testCookieValue}">方式六：通过@CookieValue获取cookie数据</a> <br>
+
+    <div style="border: 1px solid red">
+        <span>方式七：通过实体类获取请求参数</span>
+        <form th:action="@{/testBean}" method="post">
+            <!--
+                乱码问题：
+                    get乱码
+                        在tomcat的conf/server.xml 中配置 URIEncoding="UTF-8"
+                    post乱码
+                        多种解决方法
+            -->
+            username:<input type="text" name="username"> <br>
+            password:<input type="text" name="password"><br>
+            userGender:male<input type="radio" name="sex" value="male">
+                    female<input type="radio" name="sex" value="female"> <br>
+            age:<input type="text" name="age"> <br>
+            email:<input type="text" name="email"><br>
+            <input type="submit" value="submit">
+
+        </form>
+    </div>
+</body>
+</html>

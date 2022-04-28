@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>index</title>
+    </head>
+    <body>
+        <h1>hello index</h1>
+
+        <a th:href="@{/hello/testRequestMapping}">测试RequestMapping的位置</a> <br>
+
+        <a th:href="@{/hello/test}">测试RequestMapping的value属性--/hello/test</a> <br>
+
+        <a th:href="@{/hello/test}">测试RequestMapping的method属性--get请求</a> <br>
+
+        <form th:action="@{/hello/test}" method="post">
+
+            <!--HTTP Status 405 – Method Not Allowed Request method 'POST' not supported-->
+            <input type="submit" value="测试RequestMapping的method属性--post">
+        </form>
+
+        <a th:href="@{/hello/testGetMapping}">测试RequestMapping的派生类GetMapping--get请求</a> <br>
+
+        <form th:action="@{/hello/testPutMapping}" method="put">
+
+            <!--HTTP Status 405 – Method Not Allowed Request method 'GET' not supported-->
+            <input type="submit" value="测试form表单能否发送put和delete请求--put">
+        </form>
+
+        <a th:href="@{/hello/testParamsWithUsername(username='admin',password=123456)}">测试RequestMapping的params属性--get请求 + username</a> <br>
+
+        <!-- Parameter conditions "!username" not met for actual request parameters: username={admin}, password={123456-->
+        <a th:href="@{/hello/testParamsCannotWithUsername(username='admin',password=123456)}">测试RequestMapping的!params属性--get请求 + username</a> <br>
+
+        <!--Parameter conditions "username, password!=123456" not met for actual request parameters: username={admin}, password={123456}-->
+        <a th:href="@{/hello/testParams(username='admin',password=123456)}">测试RequestMapping的params属性--get请求 + username + password</a> <br>
+
+        <a th:href="@{/hello/testHeaders(username='admin',password=123456)}">测试RequestMapping的headers属性--Host:localhost:8080</a> <br>
+
+        <a th:href="@{/hello/testasuccess}">测试RequestMapping匹配Ant风格路径</a> <br>
+
+        <a th:href="@{/hello/testPath(username='admin',password=123456)}">测试RequestMapping支持路径中占位符--传统方式</a> <br>
+
+        <a th:href="@{/hello/testPath2/admin/zhouge/123456}">测试RequestMapping支持路径中占位符--rest方式</a> <br>
+
+    </body>
+</html>

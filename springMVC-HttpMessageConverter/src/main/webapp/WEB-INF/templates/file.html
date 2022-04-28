@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>file</title>
+    </head>
+    <body>
+        <fieldset style="border: 1px solid royalblue">
+            <legend>文件下载</legend>
+            <a th:href="@{/testDown}">download</a>
+        </fieldset>
+
+        <fieldset style="border: 1px solid royalblue">
+            <legend>文件上传</legend>
+            <form th:action="@{/testUp}" method="post" enctype="multipart/form-data">
+                <input type="file" name="pic"><br>
+                <input type="submit" value="up">
+            </form>
+        </fieldset>
+
+
+    </body>
+</html>

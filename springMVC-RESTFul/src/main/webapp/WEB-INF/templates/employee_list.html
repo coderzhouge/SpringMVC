@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>employee_list</title>
+
+    </head>
+    <body>
+
+        <!--表格-->
+        <table id="dataTable" style="text-align: center" cellpadding="0" cellspacing="0" border="1px">
+            <!--表头-->
+            <tr>
+                <th colspan="5">Employee Info</th>
+            </tr>
+
+            <!--标题-->
+            <tr>
+                <td>id</td>
+                <td>lastName</td>
+                <td>email</td>
+                <td>gender</td>
+                <td>
+                    options（<a th:href="@{/addEmployee}">add</a> ）
+                </td>
+            </tr>
+
+            <!--内容-->
+            <tr th:each="item : ${employees}">
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.lastName}"></td>
+                <td th:text="${item.email}"></td>
+                <td th:text="${item.gender}"></td>
+                <td>
+                    <a th:href="@{/employee/}+${item.id}">update</a>
+                    <a th:href="@{/employee/}+${item.id}" @click="deleteEmployee">delete</a>
+                </td>
+
+            </tr>
+
+        </table>
+
+        <!--表单-->
+        <form id="optionForm" method="post">
+            <!--通过 HiddenHttpMethodFilter 发送 delete 请求 -->
+            <input type="hidden" name="_method" value="delete">
+
+        </form>
+
+
+        <script type="text/javascript" th:src="@{/static/js/vue.js}"></script>
+        <script type="text/javascript">
+            var dataTable = new Vue({
+                el:"#dataTable",
+                methods:{
+                    deleteEmployee:function (event){
+
+                        //获取表单
+                        var optionForm =  document.getElementById("optionForm");
+
+                        //获取请求的地址 并赋值给表单提交的action
+                        optionForm.action = event.target.href;
+
+                        //提交请求
+                        optionForm.submit();
+
+                        //取消a标签的默认行为--跳转页面
+                        event.preventDefault();
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

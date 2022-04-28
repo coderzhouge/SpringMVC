@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>index</title>
+    </head>
+    <body>
+        <h1>首页</h1>
+
+        <!--测试 RequestBody-->
+        <fieldset style="border: 1px solid orangered">
+            <legend>测试 RequestBody</legend>
+
+            <form th:action="@{/testRequestBody}" method="post">
+                username:<input type="text" name="username"> <br>
+                password:<input type="text" name="password"> <br>
+                <input type="submit" value="submit">
+            </form>
+        </fieldset>
+
+        <br><br>
+
+        <!--测试 RequestEnity-->
+        <fieldset style="border: 1px solid orangered">
+            <legend>测试 RequestEnity</legend>
+
+            <form th:action="@{/testRequestEnity}" method="post">
+                username:<input type="text" name="username"> <br>
+                password:<input type="text" name="password"> <br>
+                <input type="submit" value="submit">
+            </form>
+        </fieldset>
+
+        <br><br>
+
+        <!--测试 @ResponseBody-->
+        <fieldset style="border: 1px solid orangered">
+            <legend>测试 @ResponseBody</legend>
+
+            测试原生ServletResponse：<a th:href="@{/testHttpServletResponse}">testHttpServletResponse</a><br>
+            测试@ResponseBody：<a th:href="@{/testResponseBody}">testResponseBody</a> <br>
+            将java对象转换为json格式的字符串：<a th:href="@{/testResponseUser}">testResponseUser</a>
+
+        </fieldset>
+
+
+        <br><br>
+
+        <!--测试 Ajax-->
+        <fieldset style="border: 1px solid orangered">
+            <legend>测试 Ajax</legend>
+            <div id="app">
+                <a th:href="@{/testAjax}" @click="testAjax" >testAjax</a>
+            </div>
+        </fieldset>
+        <br><br>
+
+
+        <!--测试 文件上传与下载-->
+        <fieldset style="border: 1px solid orangered">
+            <legend>测试 文件上传与下载</legend>
+            <a th:href="@{/testFile}"> 测试 文件上传与下载</a>
+        </fieldset>
+
+
+    <script type="text/javascript" th:src="@{/static/js/axios.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/js/vue.js}"></script>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el:"#app",
+            methods:{
+                testAjax:function (event){
+
+                    //1、发起ajax请求
+                    axios({
+                        method:"post",
+                        url:event.target.href,
+                        params:{
+                            username:"admin",
+                            password:"123456"
+                        }
+                    }).then(
+                        function (response){
+                            alert(response.data);
+                         }
+                    );
+
+                    //2、取消a标签的默认提交行为
+                    event.preventDefault();
+                }
+            }
+        });
+    </script>
+    </body>
+</html>
